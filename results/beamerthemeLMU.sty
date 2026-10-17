@@ -1,0 +1,78 @@
+% Define a custom style file for a Beamer presentation
+\ProvidesPackage{custom-beamer}
+
+% Colors for customization
+\usepackage{xcolor}
+
+% Define custom colors
+\definecolor{LMUgreen}{RGB}{0,148,64}
+\definecolor{LMUgray}{rgb}{0.2,0.2,0.2}% dark grey
+
+% Customize title frame
+\setbeamercolor*{title}{fg=LMUgreen}
+\setbeamertemplate{title page}{
+  \begin{centering}
+    \vskip2.5em
+    \ifx\inserttitlegraphic\@empty\else
+      \begin{center}
+        \inserttitlegraphic
+      \end{center}
+    \fi
+    \vskip1em
+    {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}
+    \vskip1em
+    {\usebeamerfont{author}\insertauthor\par}
+    \vskip0.5em
+    {\usebeamerfont{institute}\insertinstitute\par}
+    \vskip1em
+    {\usebeamerfont{date}\insertdate\par}
+    \vskip1.2em
+  \end{centering}
+}
+
+\titlegraphic{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{LMU_logo.png}
+  \end{center}
+}
+
+\setbeamerfont{title}{size=\huge}
+\setbeamerfont{author}{size=\large}
+\setbeamerfont{date}{size=\normalsize}
+\setbeamerfont{institute}{size=\normalsize}
+
+% Set color for structure elements
+\setbeamercolor{structure}{fg=LMUgreen}
+% This was used previously for more fine-grained control. Revert to this if an element is effected by setting structure's color that not should be.
+% % Set frame title color
+% \setbeamercolor{frametitle}{fg=LMUgreen}
+% % Set color for subsections
+% \setbeamercolor{block title}{fg=LMUgreen}
+
+% Set normal text color
+\setbeamercolor{normal text}{fg=LMUgray}
+
+% Customize itemize and enumerate symbols
+\setbeamercolor{item}{fg=LMUgreen}
+\setbeamercolor{enumerate item}{fg=LMUgreen}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[square]
+
+% Add page numbers in the bottom right corner
+\defbeamertemplate*{footline}{LMU}
+{
+	\hfill \textcolor{LMUgreen}{\insertframenumber{}} \hspace{4pt}
+	\vskip4pt%
+}	
+
+% Customize bold text color
+\setbeamerfont{bold}{series=\bfseries}
+\setbeamercolor{bold}{fg=LMUgreen}
+% Ensure bold text uses the specified color (double asteristks in quarto)
+\renewcommand{\textbf}[1]{{\usebeamercolor[fg]{bold} \usebeamerfont{bold}#1}}
+
+% Do the same for emph (single asterisk in quarto)
+\setbeamerfont{emph}{shape=\upshape}
+\setbeamercolor{emph}{fg=LMUgreen}
+\renewcommand{\emph}[1]{{\usebeamercolor[fg]{emph}\usebeamerfont{emph}#1}}
